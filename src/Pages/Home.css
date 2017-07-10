@@ -126,3 +126,24 @@ div.about-content>div.social-button>a{
   border-radius: 2em;
   margin: 2em;
 }
+
+.container a:not(.btn),
+.modal-content a:not(.btn){
+  color: #F1C40F;
+}
+
+.container .progress-bar{
+  font-size: 14px;
+  text-align: left;
+  padding-left: 2em;
+  line-height: 2em;
+}
+
+.container .progress{
+  height: 2em;
+  border-radius: 2em;
+}
+
+.container .progress-bar-success{
+  border-radius: 0.5em;
+}

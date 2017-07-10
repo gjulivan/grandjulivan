@@ -39,7 +39,13 @@ class Project extends Component {
 									<i className="fa fa-code"></i>
 								</div>
 								<div className="col-xs-10">
-									<div className="row">{project.label}</div>
+									<div className="row">
+											{
+												project.url ? 
+													<a href={project.url} target="_blank" rel="noopener noreferrer"> {project.label} </a> :
+													<span>{project.label}</span>
+											 }
+									</div>
 									{
 										project.role && <div className="row">
 										<div className="col-md-4 col-xs-12">

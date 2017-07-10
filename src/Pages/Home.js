@@ -5,7 +5,8 @@ import {Jumbotron, Navbar, NavItem, Nav, ProgressBar, NavDropdown, MenuItem, But
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
 import { SocialIcon } from 'react-social-icons';
 import Experience from './Experience';
-import {translate} from 'react-i18next';
+import * as commonApi from '../API/commonApi';
+//import {translate} from 'react-i18next';
 
 removeHash();
 configureAnchors({offset: -60, scrollDuration: 200});
@@ -19,21 +20,24 @@ class Home extends Component {
 	     intervalCounter : 1,
 	     currentJobtitle : "",
 	     startTime : new Date(2010,7),
-	     endTime : new Date()
+	     endTime : new Date(),
+	     mycontact : [],
+	     myskills : []
 	    }
    }
   componentDidMount() {
   	let _this = this;
+    this.setState({mycontact :  commonApi.getContactDetail(), myskills : commonApi.getSkills()});
     //let currentSchoolData = $.grep(this.props.tableData, function(n, i) {return (n.school._id === );});
     setInterval(()=>{
     	_this.setState({currentJobtitle : _this.state.jobtitle.substr( 0 , _this.state.intervalCounter),
     							 intervalCounter : _this.state.intervalCounter+1>_this.state.jobtitle.length +5? 1 : _this.state.intervalCounter+1 });
     		}, 200);
+
   }
 
   render() {
   	const {t}= this.props;
-  	let mycontact = t('home:mycontact',{ returnObjects: true });
     return (
     	<div>
     	  <Navbar className="navbar navbar-fixed-top  hidden-tablet hidden-phone">
@@ -83,7 +87,7 @@ class Home extends Component {
 						<div className="row about-content">
 							  <h2>About Me</h2>
 							 <div className="col-xs-12">
-								    <div>Hello, I'm a 
+								    <div>Hello, I'm a&nbsp; 
 								    		<span>Front End Developer</span> from <span>Indonesia.</span>
 								    </div>
 								    <div>I hold a Bachelor Degree in  <span>Informatics</span> from&nbsp; 
@@ -98,7 +102,8 @@ class Home extends Component {
 								<SocialIcon url="http://linkedin.com/in/gjulivan/"  style={{ height: 25, width: 25 }} />
 								<SocialIcon url="https://github.com/gjulivan"  style={{ height: 25, width: 25 }} />
 								<SocialIcon url="https://stackoverflow.com/cv/gjulivan"  style={{ height: 25, width: 25 }}/>
-								<Button className="btn btn-primary">Download Resume</Button>
+								<a href="https://docs.google.com/document/d/12fflYuhLTFuU6VdSxMgn1g-3Qo_kpTil9Oe9YceYzHk/edit?usp=sharing"
+								 target="_blank" rel="noopener noreferrer" className="btn btn-primary">Download Resume</a>
 							</div>
 							
 						</div>
@@ -117,16 +122,17 @@ class Home extends Component {
 								<Well>
 								
 								   {
-								   	 mycontact && mycontact.length>0 && Array.isArray(mycontact) && mycontact.map((contact,idx)=>{
+								   	 this.state.mycontact && this.state.mycontact.length>0 && Array.isArray(this.state.mycontact) 
+								   	 && this.state.mycontact.map((contact,idx)=>{
 								   	 	return (
 								   	 	   <div className="row" key={`contact_${idx}`}>
-								   	 		 <div className="col-xs-4 text-right">
+								   	 		 <div className="col-xs-3 text-right">
 								   	 		 		{contact.label}
 								   	 	      </div>
 								   	 	      <div className="col-xs-1 text-center">
 								   	 	      		:
 								   	 	      </div>
-								   	 	      <div className="col-xs-7 text-left">
+								   	 	      <div className="col-xs-8 text-left">
 								   	 	      	    {contact.value}
 								   	 	      </div>
 								   	 	   </div>
@@ -142,13 +148,12 @@ class Home extends Component {
 							</div>
 							<div className="row">
 								<div className="col-xs-12">
-									<ProgressBar bsStyle="success" now={80} label={'Javascript'}/>
-									<ProgressBar bsStyle="success" now={80} label={'ReactJS'}/>
-									<ProgressBar bsStyle="success" now={70} label={'WPF'}/>
-									<ProgressBar bsStyle="success" now={90} label={'C#'}/>
-									<ProgressBar bsStyle="success" now={80} label={'HTML'}/>
-									<ProgressBar bsStyle="success" now={70} label={'CSS'}/>
-									<ProgressBar bsStyle="success" now={50} label={'Project Management'}/>
+								{
+									this.state.myskills && this.state.myskills.map((skill,idx)=>{
+										return (<ProgressBar key={`skill_${idx}`} bsStyle={skill.class} active now={skill.value} label={skill.label}/>)
+									})
+								}
+								
 								</div>
 							</div>
 						</div>
@@ -164,4 +169,4 @@ class Home extends Component {
   }
 }
 
-export default translate(['home'])(Home);
+export default Home;

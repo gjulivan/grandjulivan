@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Project from './Project'
 import './Experience.css';
-import {translate} from 'react-i18next';
+import * as commonApi from '../API/commonApi';
 require('./timeline.css');
 
 class Experience extends Component {
@@ -9,16 +9,22 @@ class Experience extends Component {
     super(props);
 	    this.state = {
 	    	showModal : false,
-	    	experience: null
+	    	experience: null,
+	    	experiences : []
 	    }
 	    this.hideModal = this.hideModal.bind(this);
    }
+   componentDidMount() {
+  	let _this = this;
+    this.setState({experiences :  commonApi.getExperiences()});
+    
+  }
    hideModal(){
    	this.setState({showModal : false});
    }
   render() {
   	const {t}= this.props;
-  	let myexperience = t('home:myexperience',{ returnObjects: true });
+  	//let myexperience = t('home:myexperience',{ returnObjects: true });
     return (
 				<div className="container">
 				<Project show={this.state.showModal==="project"} onHide={this.hideModal} experience={this.state.experience}/>
@@ -30,7 +36,8 @@ class Experience extends Component {
 					<div className="row">
 						<section className="cd-container" id="cd-timeline">
 						{
-							myexperience && myexperience.length>0 && Array.isArray(myexperience) && myexperience.map((experience,idx)=>{
+							this.state.experiences && this.state.experiences.length>0 && Array.isArray(this.state.experiences) 
+							&& this.state.experiences.map((experience,idx)=>{
 								return(
 									<div className="cd-timeline-block" key={`experience_${idx}`}>
 										<div className="cd-timeline-img cd-picture">
@@ -41,7 +48,7 @@ class Experience extends Component {
 
 										<div className="cd-timeline-content">
 											<h2>{experience.title}</h2>
-											<div>Projects : </div>
+											{experience.type!=="student" && <div>Projects : </div>}
 											<div className="row projects">
 												{
 													experience.projects && experience.projects.map((project, count)=>{
@@ -54,7 +61,7 @@ class Experience extends Component {
 												}
 											</div>
 
-											<div href="#0" className="btn btn-info cd-read-more" onClick={()=>this.setState({ showModal: "project" , experience: experience})}>Read more</div>
+											{experience.type!=="student" && <div href="#0" className="btn btn-info cd-read-more" onClick={()=>this.setState({ showModal: "project" , experience: experience})}>Read more</div>}
 											<span className="cd-date">
 												<div className="row">
 													<div className="col-xs-12">
@@ -79,4 +86,4 @@ class Experience extends Component {
   }
 }
 
-export default translate(['home'])(Experience);
+export default Experience;
