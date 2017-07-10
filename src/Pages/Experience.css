@@ -1,0 +1,27 @@
+
+.zettabyte-title{
+	font-family:lulo-clean-w01-one-bold,sans-serif;
+	 display: inline !important;
+}
+.mitrais-title{
+	background-color: #6200c0;
+}
+
+.cd-timeline-content .projects{
+	margin-bottom: 1em;
+}
+
+.modal-dialog .modal-content{
+	background-color: #000;
+	border-radius: 2em;
+	border: 3px solid #fff;
+}
+
+.modal-dialog .modal-content .modal-body{
+	padding-right: 2em;
+	padding-left: 2em;
+}
+
+.modal-dialog .modal-content .modal-header .pull-right{
+  font-size: 11px;
+}

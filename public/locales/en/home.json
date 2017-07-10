@@ -1,0 +1,35 @@
+{
+	"mycontact": [
+		{"label" : "Address", "value" : "Surakarta, Central Java, Indonesia"},
+		{"label" : "Phone", "value" : "+62-819-3854-1722"},
+		{"label" : "Email", "value" : "grandjulivan@gmail.com"},
+		{"label" : "Skype", "value" : "gjulivan"}
+	],
+	
+	"myexperience" : [
+		{"company" : "Formulatrix", "start" : "September 2014", "title" : "Senior RnD Software Engineer", 
+			"url":"http://formulatrix.com/",
+			"img" : "fmlx.png",
+		"projects" : [
+			{"label" : "Liquid Handling Robot" , "tech" : "ReactJS/Redux (User App), WPF + C# (robotcontroller), SignalR (self-hosted service)"},
+			{"label" : "Protein Crystallization Robot" , "tech" : "Windows Form"},
+			{"label" : "Digital Polymerase Chain Reaction Robot" , "tech" : "ReactJS/Redux, WPF, C#, WCF"},
+			{"label" : "Crystallography Control Center Web App" , "tech" : "ASP MVC, Angularjs, SignalR, jQuery"}
+		]},
+		{"company" : "Zettabyte", "start" : "March 2017", "title" : "Freelance Front End Developer", "url":"https://www.zettabyte.sg/",
+		"img" : "zettabyte.svg",
+		"projects" : [
+			{"label" : "Student Academic Registration Web Application" , "tech" : "ReactJS, NodeJS", "role" : "Managed front-end development, optimization, deployment to staging, and testing"}
+		]},
+		{"company" : "Mitrais", "start" : "August 2010", "end" : "September 2014" , "title" : "Software Engineer", "url":"https://www.mitrais.com/",
+		"img" : "mitrais.png",
+		"projects" : [
+			{"label" : "Australian Mining Solution" , "tech" : "WPF + DevExpress + Caliburn Micro, RhinoMocks + MSTest"},
+			{"label" : "Cataloguing Tools" , "tech" : "ASP MVC 2, jQuery"},
+			{"label" : "Australian Intelligence Transport System" , "tech" : "Windows Form, XML, C#"},
+			{"label" : "Indonesian Beverages Products Manufacturer and Distributor" , "tech" : "Silverlight, SQL CE, Windows Mobile 6"}
+		]
+		}
+	]
+
+}
